@@ -57,7 +57,18 @@ Peer Assessment 1
 
 1. Histogram of the number of steps:
 
+    
+    ```r
+    hist(activity$steps)
+    ```
+    
     ![plot of chunk histogram](figure/histogram.png) 
+    
+    ```r
+    meanSteps <- mean(activity$steps,na.rm=TRUE)
+    medianSteps <- median(activity$steps,na.rm=TRUE)
+    zeroSteps <- sum(activity$steps==0,na.rm=TRUE)
+    ```
     
 2. Mean and median:
 
@@ -67,6 +78,14 @@ Ignoring missing values, the mean number of steps taken per day is 37.38 and the
 
 1. Plot of average steps by 5-minute intervals:
 
+    
+    ```r
+    ms <- aggregate(activity, by=list(activity$interval), FUN=mean, na.rm=TRUE)
+    ms <- subset(ms,select=c(steps,interval))
+    plot(ms$steps~ms$interval,type='l',main='Mean steps by 5-minute interval',
+    ylab="Steps",xlab="Interval",las=1)
+    ```
+    
     ![plot of chunk stepplot](figure/stepplot.png) 
     
 2. The interval containing the maximum number of steps is 835.
@@ -101,6 +120,11 @@ Ignoring missing values, the mean number of steps taken per day is 37.38 and the
 
 4. With imputed missing values, the mean number of steps taken per day is 37.38 and the median is 0. Is 0 right? There are 17568 observations. Of these, 11166 record 0 steps. That's 63.56%, so it looks right. It appears that imputing missing values has a negligible effect on the mean and no effect at all on the median, because zero values amount to more than half of all observations. The new histogram is below:
 
+    
+    ```r
+    hist(foo$steps)
+    ```
+    
     ![plot of chunk newhistogram](figure/newhistogram.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
@@ -127,6 +151,24 @@ Ignoring missing values, the mean number of steps taken per day is 37.38 and the
     ##   Wednesday  2592    0
     ```
 2. Plot it:
+    
+    
+    ```r
+    # Panel plot
+    require(ggplot2)
+    ```
+    
+    ```
+    ## Loading required package: ggplot2
+    ```
+    
+    ```r
+    foo$weekend <- factor(foo$weekend,labels=c('weekday','weekend'))
+    p <- ggplot(foo, aes(interval,steps)) + 
+        geom_line() + facet_grid(weekend~.) +
+        ggtitle('Walking patterns')
+    p
+    ```
     
     ![plot of chunk plotweekends](figure/plotweekends.png) 
 

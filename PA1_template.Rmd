@@ -26,7 +26,7 @@ Peer Assessment 1
 
 1. Histogram of the number of steps:
 
-    ```{r histogram, echo=FALSE}
+    ```{r histogram}
     hist(activity$steps)
     meanSteps <- mean(activity$steps,na.rm=TRUE)
     medianSteps <- median(activity$steps,na.rm=TRUE)
@@ -41,7 +41,7 @@ Ignoring missing values, the mean number of steps taken per day is `r round(mean
 
 1. Plot of average steps by 5-minute intervals:
 
-    ```{r stepplot, echo=FALSE}
+    ```{r stepplot}
     ms <- aggregate(activity, by=list(activity$interval), FUN=mean, na.rm=TRUE)
     ms <- subset(ms,select=c(steps,interval))
     plot(ms$steps~ms$interval,type='l',main='Mean steps by 5-minute interval',
@@ -79,7 +79,7 @@ Ignoring missing values, the mean number of steps taken per day is `r round(mean
 
 4. With imputed missing values, the mean number of steps taken per day is `r round(meanSteps,2)` and the median is `r round(medianSteps,2)`. Is `r medianSteps` right? There are `r nrow(foo)` observations. Of these, `r zeroSteps` record 0 steps. That's `r round(100*zeroSteps/nrow(foo),2)`%, so it looks right. It appears that imputing missing values has a negligible effect on the mean and no effect at all on the median, because zero values amount to more than half of all observations. The new histogram is below:
 
-    ```{r newhistogram, echo=FALSE}
+    ```{r newhistogram}
     hist(foo$steps)
     ```
 
@@ -95,7 +95,7 @@ Ignoring missing values, the mean number of steps taken per day is `r round(mean
     ```
 2. Plot it:
     
-    ```{r plotweekends, echo=FALSE, message=FALSE}
+    ```{r plotweekends}
     # Panel plot
     require(ggplot2)
     foo$weekend <- factor(foo$weekend,labels=c('weekday','weekend'))
