@@ -54,7 +54,7 @@ Ignoring missing values, the mean number of steps taken per day is `r round(mean
 
 1. The total number of rows with missing values in the data set is `r nrow(activity[is.na(activity),])`. There are three columns, and in theory any of them could have missing values. The total number of cases where only the number of steps is missing is `r sum(is.na(activity$steps))`. I can check that there are no missing values in any of the other two variables: date (`r sum(is.na(activity$date))` missing values) or interval (`r sum(is.na(activity$interval))` missing values).
 
-2. Filling in missing values: I will just use means by interval.
+2. Filling in missing values: I will just use means by interval that I already computed. That's my strategy.
 
 3. Creating a new data set with filled in values:
 

@@ -94,7 +94,7 @@ Ignoring missing values, the mean number of steps taken per day is 37.38 and the
 
 1. The total number of rows with missing values in the data set is 2304. There are three columns, and in theory any of them could have missing values. The total number of cases where only the number of steps is missing is 2304. I can check that there are no missing values in any of the other two variables: date (0 missing values) or interval (0 missing values).
 
-2. Filling in missing values: I will just use means by interval.
+2. Filling in missing values: I will just use means by interval that I already computed. That's my strategy.
 
 3. Creating a new data set with filled in values:
 
