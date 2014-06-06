@@ -1,5 +1,4 @@
-Peer Assessment 1
-========================================================
+# Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
 
@@ -72,7 +71,7 @@ Peer Assessment 1
     
 2. Mean and median:
 
-Ignoring missing values, the mean number of steps taken per day is 37.38 and the median is 0. Is 0 right? There are 17568 observations. Of these, 11014 record 0 steps. That's 62.69%, so it looks right.
+Ignoring missing values, the mean number of steps taken per day is 37.38 and the median is 0. Is 0 right? There are 17,568 observations. Of these, 11,014 record 0 steps. That's 62.69%, so it looks right.
 
 ## What is the average daily activity pattern?
 
@@ -118,14 +117,16 @@ Ignoring missing values, the mean number of steps taken per day is 37.38 and the
     zeroSteps <- sum(foo$steps==0)
     ```
 
-4. With imputed missing values, the mean number of steps taken per day is 37.38 and the median is 0. Is 0 right? There are 17568 observations. Of these, 11166 record 0 steps. That's 63.56%, so it looks right. It appears that imputing missing values has a negligible effect on the mean and no effect at all on the median, because zero values amount to more than half of all observations. The new histogram is below:
+4. With imputed missing values, the mean number of steps taken per day is 37.38 and the median is 0. Is 0 right? There are 17,568 observations. Of these, 11,166 record 0 steps. That's 63.56%, so it looks right. 
 
-    
-    ```r
-    hist(foo$steps)
-    ```
-    
-    ![plot of chunk newhistogram](figure/newhistogram.png) 
+Imputing missing values with this strategy has no effect on the mean (effectively, the mean over non-missings is filled in for missings). It also happens to have no effect at all on the median, because zero values amount to more than half of all observations both before and after filling in the missing values. The new histogram is below:
+
+
+```r
+hist(foo$steps)
+```
+
+![plot of chunk newhistogram](figure/newhistogram.png) 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 

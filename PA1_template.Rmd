@@ -1,5 +1,4 @@
-Peer Assessment 1
-========================================================
+# Reproducible Research: Peer Assessment 1
 
 ## Loading and preprocessing the data
 
@@ -35,7 +34,7 @@ Peer Assessment 1
     
 2. Mean and median:
 
-Ignoring missing values, the mean number of steps taken per day is `r round(meanSteps,2)` and the median is `r medianSteps`. Is `r medianSteps` right? There are `r nrow(activity)` observations. Of these, `r zeroSteps` record 0 steps. That's `r round(100*zeroSteps/nrow(activity),2)`%, so it looks right.
+Ignoring missing values, the mean number of steps taken per day is `r round(meanSteps,2)` and the median is `r medianSteps`. Is `r medianSteps` right? There are `r prettyNum(nrow(activity),big.mark=",")` observations. Of these, `r prettyNum(zeroSteps,big.mark=",")` record 0 steps. That's `r round(100*zeroSteps/nrow(activity),2)`%, so it looks right.
 
 ## What is the average daily activity pattern?
 
@@ -77,11 +76,13 @@ Ignoring missing values, the mean number of steps taken per day is `r round(mean
     zeroSteps <- sum(foo$steps==0)
     ```
 
-4. With imputed missing values, the mean number of steps taken per day is `r round(meanSteps,2)` and the median is `r round(medianSteps,2)`. Is `r medianSteps` right? There are `r nrow(foo)` observations. Of these, `r zeroSteps` record 0 steps. That's `r round(100*zeroSteps/nrow(foo),2)`%, so it looks right. It appears that imputing missing values has a negligible effect on the mean and no effect at all on the median, because zero values amount to more than half of all observations. The new histogram is below:
+4. With imputed missing values, the mean number of steps taken per day is `r round(meanSteps,2)` and the median is `r round(medianSteps,2)`. Is `r medianSteps` right? There are `r prettyNum(nrow(foo),big.mark=",")` observations. Of these, `r prettyNum(zeroSteps,big.mark=",")` record 0 steps. That's `r round(100*zeroSteps/nrow(foo),2)`%, so it looks right. 
 
-    ```{r newhistogram}
-    hist(foo$steps)
-    ```
+Imputing missing values with this strategy has no effect on the mean (effectively, the mean over non-missings is filled in for missings). It also happens to have no effect at all on the median, because zero values amount to more than half of all observations both before and after filling in the missing values. The new histogram is below:
+
+```{r newhistogram}
+hist(foo$steps)
+```
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
