@@ -174,3 +174,4 @@ hist(foo$steps)
     ![plot of chunk plotweekends](figure/plotweekends.png) 
 
 It appears that on weekends people wake up later, because the average number of steps picks up later in the day than it does on weekdays.
+>>>>>>> rr1
